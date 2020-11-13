@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <form action="/login/logincheck" method="POST">
+        username: <input type="text" name="username">
+        <input type="radio" name="ttlTime" value="7">7 days
+        <input type="radio" name="ttlTime" value="30">30 days
+        <input type="radio" name="ttlTime" value="180">180 days
+        <button>登录</button>
+    </form>
+</body>
+</html>

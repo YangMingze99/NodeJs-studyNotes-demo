@@ -1,0 +1,11 @@
+<style>
+   .first:visited{
+       color: black;
+   }
+</style>
+{{if name}}
+<a href="/login" class="first" style="text-decoration: none; "}>{{name}}</a>
+<a href="/login/logout">注销登录</a>
+{{else}}
+<a href="/login"  class="first" style="text-decoration: none;">登录</a>
+{{/if}}
