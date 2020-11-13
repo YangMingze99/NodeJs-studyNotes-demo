@@ -25,7 +25,6 @@ app.use(bodyParser.json());
 app.set('view engine', 'html');        //设置默认后缀
 app.use('/index', indexRouter);
 app.use('/login', loginRouter);
-
 app.listen(8081, function () {
     console.log("running.......");
 });
