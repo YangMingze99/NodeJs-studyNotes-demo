@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>views/index.html</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+  <form action="/postData" method="POST" enctype="multipart/form-data">
+    <!--上传大文件enctype="multipart/form-data" -->
+    <div class="form-group">
+      <label for="usename">usename</label>
+      <input type="text" class="form-control" id="usename" name="usename" placeholder="usename" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="password">password</label>
+      <input type="password" class="form-control" id="password" placeholder="password" name="password">
+    </div>
+    <div class="form-group">
+      <label for="file">File input</label>
+      <input type="file" id="file" name="file">
+      <img id="preview" src="" alt="" width="500" height="400">
+    </div>
+    <div class="form-group">
+      <button>提交</button>
+    </div>
+  </form>
+</body>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="jquery/jquery.js"></script>
+<script>
+
+  $(function () {
+    $("input[type=file]").change('click', function () {  //this指向问题 这里不能使用箭头函数
+      let fileData = new FormData();
+      // console.log(this);
+      // console.log(fileData);
+      //$(this)[0] -> document
+        fileData.append("file",$(this)[0].files[0]);
+      $.ajax({
+        url: "http://localhost:8081/preview",
+        data: fileData,
+        method:"post",
+        cache:false,
+        processData:false,
+        contentType:false,
+        success:function(data){
+          $("#preview").attr("src",data);
+          console.log(data);
+        }
+      })
+    })
+  })
+
+// $.ajax({
+//   url:'http://localhost:8081/test',
+//   method:'post',
+//   success:function(data){
+//     console.log(data);
+//   }
+// })
+
+
+
+//   $("#preview").hide();
+//   function upLoad(){
+//     var fileInput = document.getElementById("file");
+//     var file = fileInput.files[0];
+//     //创建读取文件的对象
+//     var reader = new FileReader();
+//     //创建文件读取相关的变量
+//     var imgFile;
+//     //为文件读取成功设置事件
+//     reader.onload=function(e) {
+//       // alert('文件读取完成');
+//       imgFile = e.target.result;
+//  //     console.log(imgFile);
+//       $("#preview").show(500);
+//       $("#preview").attr('src',imgFile);
+//     };
+//     //正式读取文件
+//     reader.readAsDataURL(file);
+//   }
+
+</script>
+
+</html>
