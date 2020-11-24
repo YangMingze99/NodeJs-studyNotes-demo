@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <style>
+    form {
+      width: 800px;
+      margin: 0 auto;
+      transform: translateY(50%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form method="POST" action="/login/loginchk">
+      <h1 class="display-4">登录进来吧</h1>
+      <div class="form-group row">
+        <label for="username" class="col-sm-2 col-form-label">用户名</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="username" name="username">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">密码</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="vcode" class="col-sm-2 col-form-label">验证码</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="vcode" name="vcode">
+        </div>
+      </div>
+      <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0"></legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="livetime" id="livetime" value="7" checked>
+              <label class="form-check-label" for="livetime">
+                七天免登录
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="livetime" id="livetime" value="30">
+              <label class="form-check-label" for="livetime">
+                三十天免登录
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>
+<script src="jquery/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+
+</html>

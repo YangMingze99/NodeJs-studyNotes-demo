@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">分类名称</th>
+                <th scope="col">状态</th>
+                <th scope="col">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{each list}}
+            <tr>
+                <th scope="row">{{$value.id}}</th>
+                <td >{{'-->'.repeat($value.level)}} {{$value.category}}</td>
+                <td>
+                    <input style="width: 60px;" type="checkbox" class="form-control" value="{{$value.status}}" {{$value.status == 1 ? 'checked' : ''}}>
+                    
+                </td>
+                <td>
+                    <a href="#" class="btn btn-success">编辑</a> 
+                    <a href="#" class="btn btn-danger">删除</a> 
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+
+</body>
+<script src="/jquery/jquery.js"></script>
+<script src="/bootstrap/js/bootstrap.js"></script>
+
+</html>

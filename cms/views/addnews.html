@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form action="/news/saveaddnews" method="POST">
+            <div class="form-group">
+                <label for="title">新闻标题</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="enter title">
+            </div>
+            <div class="form-group">
+                <label for="author">新闻作者</label>
+                <input type="text" class="form-control" id="author" name="author" placeholder="enter author">
+            </div>
+            <div class="form-group">
+                <label for="keyword">新闻关键字</label>
+                <input type="text" class="form-control" id="keyword" name="keyword" placeholder="enter keyword">
+            </div>
+            <!-- <div class="form-group">
+                <label for="time">发布时间</label>
+                <input type="time" class="form-control" id="time" name="time">
+            </div> -->
+
+            <div class="form-group">
+                <label for="newstype">新闻类别</label>
+                <select class="form-control" id="newstype" name="newstype">
+                    {{each typelist}}
+                        <option value="{{$value.id}}">{{$value.category}}</option>
+                    {{/each}}
+                    <!-- <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editor">新闻内容</label>
+                <script id="editor" type="text/plain" style="width:100%;height:500px;"></script>
+            </div>
+            <div class="form-group">
+                <button  type="submit" class="btn btn-primary btn-lg btn-block">提交信息</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="/jquery/jquery.js"></script>
+<script src="/bootstrap/js/bootstrap.js"></script>
+<script>
+    var ue = UE.getEditor('editor');
+</script>
+</html>

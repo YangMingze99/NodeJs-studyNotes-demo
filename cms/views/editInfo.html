@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="text-center alert alert-secondary" role="alert" >修改工具人信息</h3>
+        <form method="POST" action="/index/edituser" enctype="multipart/form-data">
+            {{each datalist}}
+            <div class="form-group">
+                <input type="text" hidden name="id" value="{{$value.id}}">
+                <label for="username">用户名</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{$value.admin_name}}">
+            </div>
+
+            <div class="form-group">
+                <label for="chooserole">选择角色</label>
+                <select class="form-control" id="chooserole" name="role">
+                <option hidden >选择角色</option>
+                {{if $value.admin_role == 'admin' }}
+                <option value="admin" selected>管理员</option>
+                <option value="user" >普通用户</option>
+                {{else}}
+                <option value="admin" >管理员</option>
+                <option value="user" selected>普通用户</option>
+                {{/if}}
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="usericon">工具人头像</label>
+                <img src="{{$value.admin_icon}}" alt="" width="180" height="120" style="display: block;" id="preview" >
+                <input type="text" name="oldicon" value="{{$value.admin_icon}}" hidden>
+                <input type="file" class="form-control-file" id="usericon" name="usericon" >
+            </div>
+            {{/each}}
+            <button  type="submit" class="btn btn-primary btn-lg btn-block">提交修改信息</button>
+        </form>
+    </div>
+
+</body>
+<script src="/jquery/jquery.js"></script>
+<script src="/bootstrap/js/bootstrap.js"></script>
+<script>
+    $(function () {
+        $("input[type=file]").change('click', function () { 
+            let fileData = new FormData();
+            // console.log(this);
+            // console.log(fileData);
+            //$(this)[0] -> document
+            fileData.append("usericon", $(this)[0].files[0]);
+            $.ajax({
+                url: "/index/preview",
+                data: fileData,
+                method: "post",
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $("#preview").removeAttr('hidden');
+                    $("#preview").attr("src", '/images_temp/' + data);
+                    console.log(data);
+                }
+            })
+        })
+    })
+</script>
+</html>

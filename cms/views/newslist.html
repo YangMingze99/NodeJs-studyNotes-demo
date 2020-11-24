@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container" style="margin-left: 0;margin-right: 10px;">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">新闻编号</th>
+                    <th scope="col">新闻标题</th>
+                    <th scope="col">新闻作者</th>
+                    <th scope="col">新闻栏目</th>
+                    <th scope="col">新闻浏览量</th>
+                    <th scope="col">新闻热度</th>
+                    <th scope="col">发布时间</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{each newslist}}
+                <tr>
+                    <th scope="row">{{$value.id}}</th>
+                    <td>{{$value.title}}</td>
+                    <td>{{$value.author}}</td>
+                    <td>{{$value.category}}</td>
+                    <td>{{$value.count}}</td>
+                    <td>{{$value.top}}</td>
+                    <td>{{$value.create_time}}</td>
+                    <td>
+                        <a href="/news/editnews.html/{{$value.id}}" class="btn btn-success" target="iFrame">编辑</a>
+                        <a href="#" class="btn btn-danger" target="iFrame">删除</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {{if page-1 == 0 }}
+                <li class="page-item disabled">
+                    {{else}}
+                <li class="page-item">
+                {{/if}}
+                    <a class="page-link" href="/news/newslist.html/{{page-1}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {{@ page_views}}
+                <!-- @ 停止处理-->
+                {{if totalPage <= page-0+1}}
+                <li class="page-item disabled">
+                    {{else}}
+                <li class="page-item">
+                    {{/if}}
+                    <a class="page-link" href="/news/newslist.html/{{page-0+1}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+<script src="/jquery/jquery.js"></script>
+<script src="/bootstrap/js/bootstrap.js"></script>
+
+</html>
